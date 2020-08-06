@@ -8,38 +8,37 @@
 body {
 	font-family: "Rubik", sans-serif;
 	text-align: center;
-	/* width: 100vw;
-	height: 100vh; */
-	background-image: linear-gradient(
-		to right,
-		#eea2a2 0%,
-		#bbc1bf 19%,
-		#57c6e1 42%,
-		#b49fda 79%,
-		#7ac5d8 100%
-	);
+	background-image: linear-gradient(360deg, #bdc3c7, #2c3e50);
+	background-repeat: no-repeat;
+	color: white;
+	height: 100vh;
 }
 
 #flex-container {
 	display: flex;
 	justify-content: center;
+	height: 506px;
 }
 
 #game-div {
 	display: flex;
 	flex-wrap: wrap;
-	width: 400px;
-	background-color: aqua;
+	width: 306px;
+	border: solid 3px whitesmoke;
+	box-shadow: 10px 10px 25px 10px rgba(50, 50, 50, 0.2);
 }
 
 #game-div .block {
-	height: 40px;
-	width: 40px;
-	background-color: red;
+	height: 30px;
+	width: 30px;
 }
 
 header {
 	margin: 50px;
+}
+
+h1 {
+	font-size: 3rem;
 }
 
 button {
@@ -49,8 +48,29 @@ button {
 	cursor: pointer;
 }
 
+#status,
+#score {
+	font-size: 1.5rem;
+}
+
 button,
 h1,
 #status {
 	margin: 10px;
+}
+
+.blockL {
+	background-color: #e3b505;
+}
+
+.blockI {
+	background-color: #95190c;
+}
+
+.blockSq {
+	background-color: #610345;
+}
+
+.blockT {
+	background-color: #107e7d;
 }
