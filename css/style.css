@@ -1,0 +1,56 @@
+/*  CSS Reset  */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Rubik", sans-serif;
+	text-align: center;
+	/* width: 100vw;
+	height: 100vh; */
+	background-image: linear-gradient(
+		to right,
+		#eea2a2 0%,
+		#bbc1bf 19%,
+		#57c6e1 42%,
+		#b49fda 79%,
+		#7ac5d8 100%
+	);
+}
+
+#flex-container {
+	display: flex;
+	justify-content: center;
+}
+
+#game-div {
+	display: flex;
+	flex-wrap: wrap;
+	width: 400px;
+	background-color: aqua;
+}
+
+#game-div .block {
+	height: 40px;
+	width: 40px;
+	background-color: red;
+}
+
+header {
+	margin: 50px;
+}
+
+button {
+	padding: 5px 10px;
+	border: none;
+	outline: none;
+	cursor: pointer;
+}
+
+button,
+h1,
+#status {
+	margin: 10px;
+}
