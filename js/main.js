@@ -10,7 +10,6 @@ const timer = document.querySelector("#timer");
 
 // Variables
 const blocks = Array.from(blocksNodeList);
-// const colors = ["#e3b505", "#95190c", "610345", "#107e7d", "#044b7f"];
 let timerInterval;
 let min,
 	sec,
@@ -56,6 +55,7 @@ let shape = blockShapes[randomShape][shapeDirection];
 let position = 4;
 
 // Event Listeners
+document.addEventListener("keydown", keyToMove);
 startBtn.addEventListener("click", () => startTimer());
 resetBtn.addEventListener("click", () => {
 	// removeBlock();
@@ -152,6 +152,12 @@ function gravity() {
 	render();
 }
 
+function keyToMove(e) {
+	if (e.keyCode === 65) blockLeft();
+	if (e.keyCode === 68) blockRight();
+	if (e.keyCode === 83) blockDown();
+}
+
 function blockLeft() {
 	removeBlock();
 	const outOfLeft = shape.some((idx) => (position + idx) % 10 === 0);
@@ -164,6 +170,17 @@ function blockLeft() {
 
 function blockRight() {
 	removeBlock();
+	const outOfRight = shape.some((idx) => (position + idx) % 10 === 9);
+	if (!outOfRight) position++;
+	if (shape.some((idx) => blocks[position + idx].classList.contains("OOB")))
+		position--;
+}
+
+function blockDown() {
+	removeBlock();
+	position += 10;
+	render();
+	outOfBounds();
 }
 
 function outOfBounds() {
