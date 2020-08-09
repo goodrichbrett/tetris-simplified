@@ -10,12 +10,13 @@ const timer = document.querySelector("#timer");
 
 // Variables
 const blocks = Array.from(blocksNodeList);
-const colors = ["#e3b505", "#95190c", "610345", "#107e7d", "#044b7f"];
+// const colors = ["#e3b505", "#95190c", "610345", "#107e7d", "#044b7f"];
 let timerInterval;
 let min,
 	sec,
 	seconds = 0;
-
+let newRandom = 0;
+let newTimerInterval;
 // Define the shapes of each block using indexes
 const blockShapes = [
 	(blockL = [
@@ -49,67 +50,77 @@ const blockShapes = [
 		[0, 1, 11, 12],
 	]),
 ];
-
-let shape = blockShapes[Math.floor(Math.random() * blockShapes.length)][0];
+let shapeDirection = 0;
+let randomShape = Math.floor(Math.random() * blockShapes.length);
+let shape = blockShapes[randomShape][shapeDirection];
 let position = 4;
 
 // Event Listeners
 startBtn.addEventListener("click", () => startTimer());
 resetBtn.addEventListener("click", () => {
+	// removeBlock();
+	newTimerInterval = null;
 	clearInterval(timerInterval);
 	seconds = 0;
 	clearInterval(timerInterval);
-	removeBlock();
 	timer.innerText = "0m 0s";
-	return (timerInterval = null);
+	return (newTimerInterval = 0);
 });
 
 // Functions
 function init() {
-	// Create 200 divs for the playing field under gameDiv
-	for (let i = 0; i < 200; i++) {
+	// Create 200 divs for the playing field under gameDiv, 10 div for bottom row detection
+	for (let i = 0; i < 210; i++) {
 		const newDiv = document.createElement("div");
 		newDiv.id = i;
-		newDiv.className = "block";
+		if (i >= 200) {
+			newDiv.className = "OOB";
+		}
+		newDiv.classList.add("block");
 		gameDiv.appendChild(newDiv);
 	}
 }
-
 //  render on the page the shape with its specific color via CSS selected class by using if statements and adding class list
 function render() {
 	shape.forEach((idx) => {
-		if (shape === blockShapes[0][0])
+		if (shape === blockShapes[0][shapeDirection])
 			blocks[position + idx].classList.add("blockL");
-		if (shape === blockShapes[1][0])
+		if (shape === blockShapes[1][shapeDirection])
 			blocks[position + idx].classList.add("blockI");
-		if (shape === blockShapes[2][0])
+		if (shape === blockShapes[2][shapeDirection])
 			blocks[position + idx].classList.add("blockSq");
-		if (shape === blockShapes[3][0])
+		if (shape === blockShapes[3][shapeDirection])
 			blocks[position + idx].classList.add("blockT");
-		if (shape === blockShapes[4][0])
+		if (shape === blockShapes[4][shapeDirection])
 			blocks[position + idx].classList.add("blockSn");
 	});
 	updateTimer();
 }
-render();
 
 function removeBlock() {
 	shape.forEach((idx) => {
-		if (shape === blockShapes[0][0])
+		blocks[position + idx].classList.remove(
+			"blockL",
+			"blockI",
+			"blockSq",
+			"blockT",
+			"blockSn"
+		);
+		if (shape === blockShapes[0][shapeDirection])
 			blocks[position + idx].classList.remove("blockL");
-		if (shape === blockShapes[1][0])
+		if (shape === blockShapes[1][shapeDirection])
 			blocks[position + idx].classList.remove("blockI");
-		if (shape === blockShapes[2][0])
+		if (shape === blockShapes[2][shapeDirection])
 			blocks[position + idx].classList.remove("blockSq");
-		if (shape === blockShapes[3][0])
+		if (shape === blockShapes[3][shapeDirection])
 			blocks[position + idx].classList.remove("blockT");
-		if (shape === blockShapes[4][0])
+		if (shape === blockShapes[4][shapeDirection])
 			blocks[position + idx].classList.remove("blockSn");
 	});
 }
 
 function startTimer() {
-	clearInterval(timerInterval);
+	newTimerInterval = setInterval(gravity, 1000);
 	timerInterval = setInterval(tick, 1000);
 	updateTimer();
 }
@@ -129,5 +140,42 @@ function updateTimer() {
 		min = Math.floor(seconds / 60);
 		sec = seconds % 60;
 		timer.innerText = `${min}m ${sec}s`;
+	}
+}
+
+// Moving the Blocks
+
+function gravity() {
+	outOfBounds();
+	removeBlock();
+	position += 10;
+	render();
+}
+
+function blockLeft() {
+	removeBlock();
+	const outOfLeft = shape.some((idx) => (position + idx) % 10 === 0);
+	if (!outOfLeft) position--;
+	if (shape.some((idx) => blocks[position + idx].classList.contains("OOB"))) {
+		position++;
+	}
+	render();
+}
+
+function blockRight() {
+	removeBlock();
+}
+
+function outOfBounds() {
+	if (
+		shape.some((idx) =>
+			blocks[position + idx + 10].classList.contains("OOB")
+		)
+	) {
+		shape.forEach((idx) => blocks[position + idx].classList.add("OOB"));
+		randomShape = Math.floor(Math.random() * blockShapes.length);
+		shape = blockShapes[randomShape][shapeDirection];
+		position = 4;
+		render();
 	}
 }

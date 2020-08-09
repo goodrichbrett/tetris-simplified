@@ -22,14 +22,18 @@ body {
 }
 
 #game-div {
+	max-width: 306px;
 	display: flex;
 	flex-wrap: wrap;
+	flex: 1 1 auto;
 	width: 306px;
+	height: 606px;
 	border: solid 3px whitesmoke;
 	box-shadow: 10px 10px 25px 10px rgba(50, 50, 50, 0.2);
 }
 
-#game-div .block {
+#game-div .block,
+.OOB {
 	height: 30px;
 	width: 30px;
 }
