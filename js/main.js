@@ -149,11 +149,6 @@ function updateTimer() {
 // Moving the Blocks
 
 function gravity() {
-	resetBtn.addEventListener("click", () => {
-		newTimerInterval = null;
-		clearInterval(newTimerInterval);
-		window.stop();
-	});
 	outOfBounds();
 	removeBlock();
 	position += 10;
