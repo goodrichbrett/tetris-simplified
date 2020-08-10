@@ -75,6 +75,7 @@ resetBtn.addEventListener("click", () => {
 	}
 	isGameOver = false;
 	gameOver.innerText = "";
+	userScore.innerText = "0";
 	newTimerInterval = clearInterval(newTimerInterval);
 	clearInterval(timerInterval);
 	seconds = 0;
