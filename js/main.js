@@ -58,8 +58,20 @@ let position = 4;
 document.addEventListener("keydown", keyToMove);
 startBtn.addEventListener("click", () => startTimer());
 resetBtn.addEventListener("click", () => {
-	// removeBlock();
-	newTimerInterval = null;
+	position = 4;
+	blocks.forEach((block) => {
+		block.classList.remove(
+			"blockL",
+			"blockI",
+			"blockSq",
+			"blockT",
+			"blockSn"
+		);
+	});
+	for (let i = 0; i <= 199; i++) {
+		blocks[i].classList.remove("OOB");
+	}
+	newTimerInterval = clearInterval(newTimerInterval);
 	clearInterval(timerInterval);
 	seconds = 0;
 	clearInterval(timerInterval);
@@ -106,20 +118,11 @@ function removeBlock() {
 			"blockT",
 			"blockSn"
 		);
-		if (shape === blockShapes[0][shapeDirection])
-			blocks[position + idx].classList.remove("blockL");
-		if (shape === blockShapes[1][shapeDirection])
-			blocks[position + idx].classList.remove("blockI");
-		if (shape === blockShapes[2][shapeDirection])
-			blocks[position + idx].classList.remove("blockSq");
-		if (shape === blockShapes[3][shapeDirection])
-			blocks[position + idx].classList.remove("blockT");
-		if (shape === blockShapes[4][shapeDirection])
-			blocks[position + idx].classList.remove("blockSn");
 	});
 }
 
 function startTimer() {
+	clearInterval(newTimerInterval);
 	newTimerInterval = setInterval(gravity, 1000);
 	timerInterval = setInterval(tick, 1000);
 	updateTimer();
@@ -146,6 +149,11 @@ function updateTimer() {
 // Moving the Blocks
 
 function gravity() {
+	resetBtn.addEventListener("click", () => {
+		newTimerInterval = null;
+		clearInterval(newTimerInterval);
+		window.stop();
+	});
 	outOfBounds();
 	removeBlock();
 	position += 10;
