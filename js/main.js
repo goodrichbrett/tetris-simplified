@@ -156,6 +156,7 @@ function keyToMove(e) {
 	if (e.keyCode === 65) blockLeft();
 	if (e.keyCode === 68) blockRight();
 	if (e.keyCode === 83) blockDown();
+	if (e.keyCode === 87) blockRotate();
 }
 
 function blockLeft() {
@@ -181,6 +182,13 @@ function blockDown() {
 	position += 10;
 	render();
 	outOfBounds();
+}
+
+function blockRotate() {
+	removeBlock();
+	shapeDirection++;
+	if (shapeDirection === shape.length) shapeDirection = 0;
+	shape = blockShapes[randomShape][shapeDirection];
 }
 
 function outOfBounds() {
