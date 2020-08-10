@@ -9,13 +9,13 @@ const startBtn = document.querySelector("#startButton");
 const timer = document.querySelector("#timer");
 
 // Variables
-const blocks = Array.from(blocksNodeList);
+let blocks = Array.from(blocksNodeList);
 let timerInterval;
 let min,
 	sec,
 	seconds = 0;
-let newRandom = 0;
 let newTimerInterval;
+let score = 0;
 // Define the shapes of each block using indexes
 const blockShapes = [
 	(blockL = [
@@ -146,6 +146,40 @@ function updateTimer() {
 	}
 }
 
+function updateScore() {
+	for (let i = 0; i < 199; i += 10) {
+		const fullRow = [
+			i,
+			i + 1,
+			i + 2,
+			i + 3,
+			i + 4,
+			i + 5,
+			i + 6,
+			i + 7,
+			i + 8,
+			i + 8,
+		];
+		if (fullRow.every((idx) => blocks[idx].classList.contains("OOB"))) {
+			score += 10;
+			userScore.innerText = `${score}`;
+			fullRow.forEach((idx) => {
+				blocks[idx].classList.remove("OOB");
+				blocks[idx].classList.remove(
+					"blockL",
+					"blockI",
+					"blockSq",
+					"blockT",
+					"blockSn"
+				);
+			});
+			const blocksRemoved = blocks.splice(i, 10);
+			blocks = blocksRemoved.concat(blocks);
+			blocks.forEach((elm) => gameDiv.appendChild(elm));
+		}
+	}
+}
+
 // Moving the Blocks
 
 function gravity() {
@@ -192,6 +226,7 @@ function blockRotate() {
 	shapeDirection++;
 	if (shapeDirection === shape.length) shapeDirection = 0;
 	shape = blockShapes[randomShape][shapeDirection];
+	render();
 }
 
 function outOfBounds() {
@@ -205,5 +240,6 @@ function outOfBounds() {
 		shape = blockShapes[randomShape][shapeDirection];
 		position = 4;
 		render();
+		updateScore();
 	}
 }
