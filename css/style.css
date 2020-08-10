@@ -64,7 +64,7 @@ button {
 h1,
 #status,
 #timer {
-	margin: 10px;
+	margin: 10px 10px 0 10px;
 }
 
 .blockL {
@@ -89,4 +89,8 @@ h1,
 
 #keys {
 	margin: 0 0 10px 0;
+}
+
+#game-over {
+	color: red;
 }

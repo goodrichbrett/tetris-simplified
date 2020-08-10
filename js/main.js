@@ -7,6 +7,7 @@ const userScore = document.querySelector("#status #score");
 const resetBtn = document.querySelector("#resetButton");
 const startBtn = document.querySelector("#startButton");
 const timer = document.querySelector("#timer");
+const gameOver = document.querySelector("#game-over");
 
 // Variables
 let blocks = Array.from(blocksNodeList);
@@ -53,6 +54,7 @@ let shapeDirection = 0;
 let randomShape = Math.floor(Math.random() * blockShapes.length);
 let shape = blockShapes[randomShape][shapeDirection];
 let position = 4;
+let isGameOver = false;
 
 // Event Listeners
 document.addEventListener("keydown", keyToMove);
@@ -71,6 +73,8 @@ resetBtn.addEventListener("click", () => {
 	for (let i = 0; i <= 200; i++) {
 		blocks[i].classList.remove("OOB");
 	}
+	isGameOver = false;
+	gameOver.innerText = "";
 	newTimerInterval = clearInterval(newTimerInterval);
 	clearInterval(timerInterval);
 	seconds = 0;
@@ -185,7 +189,8 @@ function endGame() {
 	if (shape.some((idx) => blocks[position + idx].classList.contains("OOB"))) {
 		newTimerInterval = clearInterval(newTimerInterval);
 		clearInterval(timerInterval);
-		window.stop();
+		gameOver.innerText = "GAME OVER!";
+		isGameOver = true;
 	}
 }
 
@@ -199,10 +204,12 @@ function gravity() {
 }
 
 function keyToMove(e) {
-	if (e.keyCode === 65) blockLeft();
-	if (e.keyCode === 68) blockRight();
-	if (e.keyCode === 83) blockDown();
-	if (e.keyCode === 87) blockRotate();
+	if (isGameOver === false) {
+		if (e.keyCode === 65) blockLeft();
+		if (e.keyCode === 68) blockRight();
+		if (e.keyCode === 83) blockDown();
+		if (e.keyCode === 87) blockRotate();
+	}
 }
 
 function blockLeft() {
