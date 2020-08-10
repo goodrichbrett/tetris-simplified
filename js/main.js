@@ -68,7 +68,7 @@ resetBtn.addEventListener("click", () => {
 			"blockSn"
 		);
 	});
-	for (let i = 0; i <= 199; i++) {
+	for (let i = 0; i <= 200; i++) {
 		blocks[i].classList.remove("OOB");
 	}
 	newTimerInterval = clearInterval(newTimerInterval);
@@ -76,6 +76,7 @@ resetBtn.addEventListener("click", () => {
 	seconds = 0;
 	clearInterval(timerInterval);
 	timer.innerText = "0m 0s";
+	score.innerText = "0";
 	return (newTimerInterval = 0);
 });
 
@@ -158,7 +159,7 @@ function updateScore() {
 			i + 6,
 			i + 7,
 			i + 8,
-			i + 8,
+			i + 9,
 		];
 		if (fullRow.every((idx) => blocks[idx].classList.contains("OOB"))) {
 			score += 10;
@@ -177,6 +178,14 @@ function updateScore() {
 			blocks = blocksRemoved.concat(blocks);
 			blocks.forEach((elm) => gameDiv.appendChild(elm));
 		}
+	}
+}
+
+function endGame() {
+	if (shape.some((idx) => blocks[position + idx].classList.contains("OOB"))) {
+		newTimerInterval = clearInterval(newTimerInterval);
+		clearInterval(timerInterval);
+		window.stop();
 	}
 }
 
@@ -241,5 +250,6 @@ function outOfBounds() {
 		position = 4;
 		render();
 		updateScore();
+		endGame();
 	}
 }
