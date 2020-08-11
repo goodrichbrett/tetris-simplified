@@ -74,6 +74,7 @@ resetBtn.addEventListener("click", () => {
 		blocks[i].classList.remove("OOB");
 	}
 	isGameOver = false;
+	score = 0;
 	gameOver.innerText = "";
 	userScore.innerText = "0";
 	newTimerInterval = clearInterval(newTimerInterval);
@@ -190,10 +191,10 @@ function updateScore() {
 
 function endGame() {
 	if (shape.some((idx) => blocks[position + idx].classList.contains("OOB"))) {
-		newTimerInterval = clearInterval(newTimerInterval);
-		clearInterval(timerInterval);
 		gameOver.innerText = "GAME OVER!";
 		isGameOver = true;
+		newTimerInterval = clearInterval(newTimerInterval);
+		clearInterval(timerInterval);
 	}
 }
 
