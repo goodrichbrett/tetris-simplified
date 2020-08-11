@@ -1,5 +1,6 @@
 # Tetris: WASD Edition
-[Play Here!](wasd-tetris.surge.sh)
+
+[Play Here](http://wasd-tetris.surge.sh/)
 
 
 Final Product
