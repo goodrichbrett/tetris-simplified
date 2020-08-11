@@ -100,6 +100,7 @@ function init() {
 }
 //  render on the page the shape with its specific color via CSS selected class by using if statements and adding class list
 function render() {
+	document.getElementById("200").classList.add("OOB"); // Prevents block going off the gameDiv bug
 	shape.forEach((idx) => {
 		if (shape === blockShapes[0][shapeDirection])
 			blocks[position + idx].classList.add("blockL");
@@ -170,6 +171,7 @@ function updateScore() {
 			score += 10;
 			userScore.innerText = `${score}`;
 			fullRow.forEach((idx) => {
+				blocks[idx].classList.remove("OOB");
 				blocks[idx].classList.remove(
 					"blockL",
 					"blockI",
@@ -177,11 +179,11 @@ function updateScore() {
 					"blockT",
 					"blockSn"
 				);
-				blocks[idx].classList.remove("OOB");
 			});
 			const blocksRemoved = blocks.splice(i, 10);
 			blocks = blocksRemoved.concat(blocks);
 			blocks.forEach(() => (gameDiv.innerHTML = ""));
+			blocks.forEach((elm) => gameDiv.appendChild(elm));
 		}
 	}
 }
@@ -199,6 +201,7 @@ function gravity() {
 	outOfBounds();
 	removeBlock();
 	position += 10;
+	render();
 }
 
 function keyToMove(e) {
