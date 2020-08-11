@@ -153,7 +153,7 @@ function updateTimer() {
 }
 
 function updateScore() {
-	for (let i = 0; i < 199; i += 10) {
+	for (let i = 0; i < 200; i += 10) {
 		const fullRow = [
 			i,
 			i + 1,
@@ -170,7 +170,6 @@ function updateScore() {
 			score += 10;
 			userScore.innerText = `${score}`;
 			fullRow.forEach((idx) => {
-				blocks[idx].classList.remove("OOB");
 				blocks[idx].classList.remove(
 					"blockL",
 					"blockI",
@@ -178,10 +177,11 @@ function updateScore() {
 					"blockT",
 					"blockSn"
 				);
+				blocks[idx].classList.remove("OOB");
 			});
 			const blocksRemoved = blocks.splice(i, 10);
 			blocks = blocksRemoved.concat(blocks);
-			blocks.forEach((elm) => gameDiv.appendChild(elm));
+			blocks.forEach(() => (gameDiv.innerHTML = ""));
 		}
 	}
 }
@@ -195,13 +195,10 @@ function endGame() {
 	}
 }
 
-// Moving the Blocks
-
 function gravity() {
 	outOfBounds();
 	removeBlock();
 	position += 10;
-	render();
 }
 
 function keyToMove(e) {
