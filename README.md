@@ -1,10 +1,13 @@
 # Tetris: WASD Edition
+[Play Here!](wasd-tetris.surge.sh)
+
 
 Final Product
 ![Image](https://i.imgur.com/mKZGPHF.png)
 
 Original Wireframe
 ![Image](https://i.imgur.com/pMI7xuU.png)
+
 ## Technologies Used
 - JavaScript
 - CSS
