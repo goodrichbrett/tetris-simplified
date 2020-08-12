@@ -101,7 +101,9 @@ function init() {
 }
 //  render on the page the shape with its specific color via CSS selected class by using if statements and adding class list
 function render() {
-	document.getElementById("200").classList.add("OOB"); // Prevents block going off the gameDiv bug
+	for (let i = 200; i < 210; i++) {
+		document.getElementById(i).classList.add("OOB"); // Prevents block going off the gameDiv bug
+	}
 	shape.forEach((idx) => {
 		if (shape === blockShapes[0][shapeDirection])
 			blocks[position + idx].classList.add("blockL");
