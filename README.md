@@ -1,6 +1,6 @@
 # Tetris: WASD Edition
 
-[Play Here](https://goodrichbrett.github.io/tetris-simplified/)
+[Play Here](http://wasd-tetris.surge.sh/)
 
 
 Final Product
