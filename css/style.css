@@ -1,96 +1,104 @@
 /*  CSS Reset  */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-	font-family: "Rubik", sans-serif;
-	text-align: center;
-	background-image: linear-gradient(360deg, #bdc3c7, #2c3e50);
-	background-repeat: no-repeat;
-	background-size: cover;
-	color: white;
-	height: 100vh;
+    font-family: "Rubik", sans-serif;
+    text-align: center;
+    background-image: linear-gradient(360deg, #bdc3c7, #2c3e50);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    height: 100vh;
 }
 
 #flex-container {
-	display: flex;
-	justify-content: center;
-	height: 506px;
+    display: flex;
+    justify-content: center;
+    height: 506px;
 }
 
 #game-div {
-	max-width: 306px;
-	display: flex;
-	flex-wrap: wrap;
-	flex: 1 1 auto;
-	width: 306px;
-	height: 606px;
-	border: solid 3px whitesmoke;
-	box-shadow: 10px 10px 25px 10px rgba(50, 50, 50, 0.2);
+    max-width: 306px;
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    width: 306px;
+    height: 606px;
+    border: solid 3px whitesmoke;
+    box-shadow: 10px 10px 25px 10px rgba(50, 50, 50, 0.2);
 }
 
 #game-div .block,
 .OOB {
-	height: 30px;
-	width: 30px;
+    height: 30px;
+    width: 30px;
 }
 
 header {
-	margin: 50px;
-	margin-top: 15px;
+    margin: 50px;
+    margin-top: 15px;
 }
 
 h1 {
-	font-size: 3rem;
+    font-size: 3rem;
 }
 
 button {
-	padding: 5px 10px;
-	margin-top: 10px;
-	border: none;
-	outline: none;
-	cursor: pointer;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    cursor: pointer;
 }
 
 #status,
 #score,
 #timer {
-	font-size: 1.5rem;
+    font-size: 1.5rem;
 }
 
 h1,
 #status,
 #timer {
-	margin: 10px 10px 0 10px;
+    margin: 10px 10px 0 10px;
 }
 
 .blockL {
-	background-color: #fff591;
+    background-color: #fff591;
 }
 
 .blockI {
-	background-color: #fa4659;
+    background-color: #fa4659;
 }
 
 .blockSq {
-	background-color: #bf00ff;
+    background-color: #bf00ff;
 }
 
 .blockT {
-	background-color: #4ef037;
+    background-color: #4ef037;
 }
 
 .blockSn {
-	background-color: #11cbd7;
+    background-color: #11cbd7;
 }
 
 #keys {
-	margin: 0 0 10px 0;
+    margin: 0 0 10px 0;
 }
 
 #game-over {
-	color: red;
+    color: red;
+}
+
+.blockL,
+.blockI,
+.blockSq,
+.blockT,
+.blockSn {
+    border: solid 1px whitesmoke;
 }
