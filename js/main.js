@@ -1,7 +1,6 @@
 // Cached Element References
 const gameDiv = document.querySelector("#game-div");
-// Call initialization function after selecting the gameDiv, so the blocks can be adding to the html before selecting each block
-init();
+init(); // Call initialization function after selecting the gameDiv, so the blocks can be adding to the html before selecting each block
 const blocksNodeList = document.querySelectorAll(".block");
 const userScore = document.querySelector("#status #score");
 const resetBtn = document.querySelector("#resetButton");
